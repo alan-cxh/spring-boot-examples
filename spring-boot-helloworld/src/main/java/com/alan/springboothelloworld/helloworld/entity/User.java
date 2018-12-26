@@ -2,14 +2,16 @@ package com.alan.springboothelloworld.helloworld.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="t_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    @NotNull
     private String username;
+    @NotNull
     private String age;
 
     public String getId() {
