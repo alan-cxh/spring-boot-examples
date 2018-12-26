@@ -1,4 +1,4 @@
-package com.alan.springboothelloworld.web;
+package com.alan.springboothelloworld.helloworld.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ public class HelloController {
 
     @RequestMapping("test")
     public String test(){
-        return "hello world";
+        return "springboot基础技术";
     }
 
 }
