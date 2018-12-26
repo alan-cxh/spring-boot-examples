@@ -1,7 +1,13 @@
 package com.alan.springboothelloworld.helloworld.entity;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="t_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String username;
     private String age;
