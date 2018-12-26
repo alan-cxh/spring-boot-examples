@@ -1,6 +1,8 @@
 package com.alan.springboothelloworld.helloworld.dao;
 
 import com.alan.springboothelloworld.helloworld.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +15,8 @@ public interface UserDao extends JpaRepository<User, String> {
 
     // 根据名字查询 ok
     public List<User> findByUsername(String username);
+    // 效果同上，精确查询
+    public List<User> findByUsernameIs(String username);
 
 //    依据姓名模糊查询  // 一定要加 "%"+参数名+"%"
     @Query(value = "select t from User t where t.username like %?1% ")
@@ -25,5 +29,8 @@ public interface UserDao extends JpaRepository<User, String> {
     //    age1 <= age <= age2   .注意：如果有注解，则优先执行注解中的sql语句
     @Query(value = "select u from User u where u.age>?1 and u.age <?2 ")
     public List<User> findAllByAgeGreaterThanEqualAndAgeLessThanEqual(String age1, String age2);
+
+    // 分页
+    public Page<User> findAll(Pageable pageable);
 
 }

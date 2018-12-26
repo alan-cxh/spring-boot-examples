@@ -4,6 +4,9 @@ import com.alan.springboothelloworld.helloworld.dao.UserDao;
 import com.alan.springboothelloworld.helloworld.entity.User;
 import com.alan.springboothelloworld.helloworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +36,16 @@ public class HelloController {
         }
     }
 
+    /**
+     * Jpa 查询，自定义sql
+     * @param username
+     * @return
+     */
     @RequestMapping("{username}")
     public Object getUserByUsername(@PathVariable String username){
-        return userDao.findAllByAgeGreaterThanEqualAndAgeLessThanEqual(username, "35");
+        Sort sort = new Sort(Sort.Direction.ASC,"id"); //创建时间降序排序
+        Pageable pageable = new PageRequest(0,3,sort);
+        return userDao.findAll(pageable);
     }
 
 
