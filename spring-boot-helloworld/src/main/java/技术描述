@@ -12,3 +12,7 @@
         a.SendMail 采用Transport最简单的方式
         b.MailUtil 采用JavaMailSenderImpl配置文件的方式
         c.MailController 采用JavaMailSender，springboot发送邮件发送最简介
+
+7.采用静态资源
+  1. 正常情况下：可以直接访问static文件下的静态资源文件
+  2. 拦截静态资源文件，自定义静态资源文件路径

@@ -47,7 +47,7 @@ public class HelloController {
      * @param username
      * @return
      */
-    @RequestMapping("{username}")
+    @RequestMapping("/hello/{username}")
     public Object getUserByUsername(@PathVariable String username){
         Sort sort = new Sort(Sort.Direction.ASC,"id"); //创建时间降序排序
         Pageable pageable = new PageRequest(0,3,sort);
