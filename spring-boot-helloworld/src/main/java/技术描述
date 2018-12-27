@@ -2,3 +2,13 @@
 2.定时任务
 3.配置日志文件
 4.mysql配置,数据库连接池配置，Jpa使用，添加事务注解
+
+5.配置拦截器
+    LoginInterceptor WebAppConfig
+    https://blog.csdn.net/qq_23543983/article/details/80434547
+
+6 配置邮件
+    以下有三种方式发送邮件
+        a.SendMail 采用Transport最简单的方式
+        b.MailUtil 采用JavaMailSenderImpl配置文件的方式
+        c.MailController 采用JavaMailSender，springboot发送邮件发送最简介
