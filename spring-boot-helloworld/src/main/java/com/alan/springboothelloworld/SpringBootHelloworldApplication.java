@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableScheduling //  定时任务开启
 @SpringBootApplication
-@EnableTransactionManagement
+@EnableTransactionManagement // 添加事务注解
 
 public class SpringBootHelloworldApplication {
 

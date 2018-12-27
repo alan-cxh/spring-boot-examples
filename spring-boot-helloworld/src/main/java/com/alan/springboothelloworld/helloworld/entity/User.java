@@ -3,6 +3,7 @@ package com.alan.springboothelloworld.helloworld.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name="t_user")
@@ -13,6 +14,9 @@ public class User {
     private String username;
     @NotNull
     private String age;
+
+    @Column(name = "createdate")
+    private Date createDate;
 
     public String getId() {
         return id;
@@ -36,5 +40,13 @@ public class User {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

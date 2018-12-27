@@ -16,11 +16,14 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
 
+
+    // 添加事务注解之后，需要将业务逻辑添加到该方法下，使得入库时数据是同步的，否则遇到异常，则回滚数据
+    @Transactional
     @Override
     public void saveUser() {
         User user = new User();
         user.setId(UUIDGenerator.getUUID());
-        user.setUsername("alan_chen122");
+        user.setUsername("alan_chen");
         user.setAge("27");
         userDao.save(user);
     }
