@@ -10,7 +10,7 @@ import java.util.Date;
 public class User {
     @Id
     private String id;
-    @NotNull
+    @NotNull(message = "用户帐号不能为空")
     private String username;
     @NotNull
     private String age;
