@@ -1,4 +1,4 @@
-package com.alan.springboothelloworld.helloworld.web;
+package com.alan.springboothelloworld.validator;
 
 import com.alan.springboothelloworld.helloworld.entity.NicResult;
 import com.alan.springboothelloworld.helloworld.entity.User;
