@@ -4,9 +4,13 @@ import com.alan.springboothelloworld.common.util.UUIDGenerator;
 import com.alan.springboothelloworld.helloworld.dao.UserDao;
 import com.alan.springboothelloworld.helloworld.entity.User;
 import com.alan.springboothelloworld.helloworld.service.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +22,11 @@ import java.util.List;
 @CacheConfig(cacheNames = "userService")
 public class UserServiceImpl implements UserService {
 
+    Log log = LogFactory.getLog(UserServiceImpl.class);
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
 
 
@@ -39,6 +46,24 @@ public class UserServiceImpl implements UserService {
     @Cacheable
     @Override
     public List<User> list() {
+        String key = "username";
+        log.info("调用数据库数据");
+        boolean hasKey = redisTemplate.hasKey(key);
+        if (hasKey) { // 从缓存中取
+            ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+            System.out.println( valueOperations.get(key));
+            log.info("从缓存中获取了用户！");
+            return null;
+        }
         return userDao.findAll();
+    }
+
+    @Cacheable
+    @Override
+    public void testValueOption(){
+        User user=new User("111", "李四2", "28", new Date());
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+//        valueOperations.set("testValueOption",user);
+        System.out.println(valueOperations.get("test"));
     }
 }

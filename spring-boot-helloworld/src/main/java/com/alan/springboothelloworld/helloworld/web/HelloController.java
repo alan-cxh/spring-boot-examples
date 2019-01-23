@@ -37,6 +37,11 @@ public List<User> list() {
 
 }
 
+    @RequestMapping(value = "/testValueOption")
+    public void testValueOption() {
+        userService.testValueOption();
+    }
+
 
 
 

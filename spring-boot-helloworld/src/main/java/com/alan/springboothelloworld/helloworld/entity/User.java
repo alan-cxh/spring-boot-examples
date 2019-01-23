@@ -19,6 +19,14 @@ public class User implements Serializable {
     @Column(name = "createdate")
     private Date createDate;
 
+    public User(String id, String username, String age, Date createDate){
+        this.id = id;
+        this.username = username;
+        this.age = age;
+        this.createDate = createDate;
+    }
+    public User(){}
+
     public String getId() {
         return id;
     }
