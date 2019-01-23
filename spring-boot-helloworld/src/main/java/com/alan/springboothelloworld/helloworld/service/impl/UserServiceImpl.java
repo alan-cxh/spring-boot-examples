@@ -5,13 +5,17 @@ import com.alan.springboothelloworld.helloworld.dao.UserDao;
 import com.alan.springboothelloworld.helloworld.entity.User;
 import com.alan.springboothelloworld.helloworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
+@CacheConfig(cacheNames = "userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,5 +34,11 @@ public class UserServiceImpl implements UserService {
         user.setCreateDate(new Date());
         userDao.save(user);
 //        int i = 1/0;
+    }
+
+    @Cacheable
+    @Override
+    public List<User> list() {
+        return userDao.findAll();
     }
 }

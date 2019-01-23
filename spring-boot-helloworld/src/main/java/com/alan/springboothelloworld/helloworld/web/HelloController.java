@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 
 @RestController
@@ -26,6 +27,18 @@ public class HelloController {
     private UserService userService;
     @Autowired
     private UserDao userDao;
+
+
+// ------------------------------------------------------------------------------------
+// redis测试
+@RequestMapping(value = "/list")
+public List<User> list() {
+    return userService.list();
+
+}
+
+
+
 
     @RequestMapping("test")
     public String test(){

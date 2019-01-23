@@ -26,3 +26,5 @@
 
 11.使用SpringBoot validator让数据更真实
     作用：后台对前台传递数据的校验，防止无效数据
+
+12. 使用Redis作为SpringBoot1.5.x项目数据缓存

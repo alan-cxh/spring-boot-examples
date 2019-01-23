@@ -3,11 +3,12 @@ package com.alan.springboothelloworld.helloworld.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="t_user")
-public class User {
+public class User implements Serializable {
     @Id
     private String id;
     @NotNull(message = "用户帐号不能为空")
