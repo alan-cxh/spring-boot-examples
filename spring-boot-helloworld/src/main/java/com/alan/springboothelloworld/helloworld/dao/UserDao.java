@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface UserDao extends JpaRepository<User, String> {
 
+
     // 根据名字查询 ok
     public List<User> findByUsername(String username);
     // 效果同上，精确查询

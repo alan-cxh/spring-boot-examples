@@ -28,3 +28,12 @@
     作用：后台对前台传递数据的校验，防止无效数据
 
 12. 使用Redis作为SpringBoot1.5.x项目数据缓存
+    @Cacheable：在方法执行前Spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；
+        没有则调用方法并将方法返回值放进缓存。
+    @CachePut：将方法的返回值放到缓存中。一般用户update操作
+    @CacheEvict：删除缓存中的数据。一般用户delete操作
+    @CacheConfig: 定义缓存名称，且缓存名称可被复用； 以上注解需要结合该注解使用
+
+    *通过以上缓存@Cacheable、@CacheEvict注解方式，对缓存进行全局操作，而通过RedisTemplate类和@CachePut，可进行细化操作
+
+    本次操作实现对redis的五种类型的数据结构的操作和对各种注解的使用。

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Transactional
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate redisTemplate;
 
 
 
@@ -43,14 +44,17 @@ public class UserServiceImpl implements UserService {
 //        int i = 1/0;
     }
 
-    @Cacheable
+//    @Cacheable
     @Override
     public List<User> list() {
         String key = "username";
         log.info("调用数据库数据");
         boolean hasKey = redisTemplate.hasKey(key);
         if (hasKey) { // 从缓存中取
-            ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+            ValueOperations<String, List<User>> valueOperations = redisTemplate.opsForValue();
+            valueOperations.set("username111", userDao.findAll(), 20, TimeUnit.SECONDS);
+
+            valueOperations.get("username111");
             System.out.println( valueOperations.get(key));
             log.info("从缓存中获取了用户！");
             return null;
