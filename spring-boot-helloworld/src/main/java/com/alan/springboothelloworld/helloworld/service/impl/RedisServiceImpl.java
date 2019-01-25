@@ -33,8 +33,8 @@ public class RedisServiceImpl{
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Cacheable(key = "'list'")
-    public List<User> list() {
+    @Cacheable(key = "'list'", condition = "#id.length() > 10")
+    public List<User> list(String id) {
         log.info("调用数据库数据");
         return userDao.findAll();
     }

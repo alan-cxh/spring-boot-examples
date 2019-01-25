@@ -22,7 +22,7 @@ public class RedisController {
 
     @RequestMapping(value = "/list")
     public List<User> list() {
-        return redisService.list();
+        return redisService.list("11111");
     }
 
     @RequestMapping(value = "/updateList")
